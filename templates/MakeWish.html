@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>New Wish</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+     {% if messages %}
+     <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+     </ul>
+     {% endif %}
+     <h1>Hello  {{user.first_name}}! Make a Wish!</h1>
+     <p><a href="/logout">Logout</a></p>
+     {% if messages %}
+<ul class="messages">    
+     {% for message in messages %}    
+          <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+     {% endfor %}
+</ul>
+{% endif %}
+
+     <form action="/create_wish" method="POST">
+          {% csrf_token %}
+          <label for="name">I wish for:</label>
+          <input type="text" id="name" name="name"><br><br>
+          <label for="description">Description:</label>
+          <input type="text" id="description" name="description"><br><br>
+          <input type="submit" value="Submit">
+     </form>
+</body>
+</html>

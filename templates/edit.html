@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>edit</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+     {% if messages %}
+     <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+     </ul>
+     {% endif %}
+     <h1> Edit Wish # {{wish.id}}</h1>
+     <form action="/wishes/update/{{wish.id}}" method="POST">
+          {% csrf_token%}
+          <label for='name'>I wish for:</label>
+          <input type='text' name='name' value="{{wish.name}}"">
+          <label for='description'>Description:</label>
+          <input type='text' name='description' value="{{wish.description}}">
+          <input type='submit' value='edit'>
+          
+     </form>
+     <p><a href="/wishes"><button>Cancel</button></a></p>
+     <p><a href="/logout">Logout</a></p>
+</body>
+</html>

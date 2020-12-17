@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Login/Reg</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+     {% if messages %}
+     <ul class="messages">
+          {% for message in messages %}
+              <li>{{ message }}</li>
+          {% endfor %}
+     </ul>
+     {% endif %}
+     <h1>Registration</h1>
+     
+     <form action="/register" method="POST">
+          {% csrf_token %}
+          First Name: <input type="text" name="first_name">
+          Last Name: <input type="text" name="last_name">
+          Email: <input type="email" name="email">
+          Password: <input type="password" name="password">
+          Password Confirmation: <input type="password" name="password_confirmation">
+          <input type="submit" value="Register">
+     </form>
+     <h1>Log In</h1>
+     <form action="/login" method="POST">
+          {% csrf_token %}
+          Email: <input type="email" name="email">
+          Password: <input type="password" name="password">
+          <input type="submit" value="Login">
+     </form>
+</body>
+</html>
